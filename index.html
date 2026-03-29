@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyET AI - Personalized News</title>
+
+  <style>
+    /* Basic reset and font */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+
+    /* Center everything on page */
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Header styles */
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    /* Label style */
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    /* Dropdown style */
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      background-color: #fafafa;
+    }
+
+    /* Button style */
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #2980b9;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1a6495;
+    }
+
+    /* Output box - hidden by default */
+    #output-box {
+      margin-top: 25px;
+      padding: 20px;
+      background-color: #eaf4fb;
+      border-left: 4px solid #2980b9;
+      border-radius: 6px;
+      display: none; /* hidden until button is clicked */
+    }
+
+    #output-box h2 {
+      margin-top: 0;
+      color: #1a5276;
+      font-size: 18px;
+    }
+
+    #output-box p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+
+    #output-box ul {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    #output-box ul li {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    /* Hindi line style */
+    .hindi-line {
+      margin-top: 12px;
+      font-style: italic;
+      color: #555;
+      font-size: 14px;
+      border-top: 1px dashed #aaa;
+      padding-top: 10px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 12px;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- App Title -->
+    <h1>📰 MyET AI</h1>
+    <p class="subtitle">Personalized News — Powered by Simple AI Logic</p>
+
+    <!-- Dropdown Label -->
+    <label for="user-type">Select Your Role:</label>
+
+    <!-- Dropdown Menu -->
+    <select id="user-type">
+      <option value="">-- Choose a role --</option>
+      <option value="investor">Investor</option>
+      <option value="student">Student</option>
+      <option value="startup">Startup Founder</option>
+    </select>
+
+    <!-- Button to generate news -->
+    <button onclick="generateNews()">Generate AI News</button>
+
+    <!-- Output Box (hidden at start) -->
+    <div id="output-box">
+      <h2 id="news-title"></h2>
+      <p id="news-summary"></p>
+      <ul>
+        <li id="point-1"></li>
+        <li id="point-2"></li>
+      </ul>
+      <p class="hindi-line" id="hindi-line"></p>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    MyET AI Prototype &mdash; Made with ❤️ using HTML, CSS & JS
+  </div>
+
+
+  <script>
+    // This function runs when the button is clicked
+    function generateNews() {
+
+      // Get the selected value from the dropdown
+      var userType = document.getElementById("user-type").value;
+
+      // Get the output box element
+      var outputBox = document.getElementById("output-box");
+
+      // If nothing is selected, show an alert and stop
+      if (userType === "") {
+        alert("Please select a role first!");
+        return;
+      }
+
+      // Variables to hold the content we will show
+      var title   = "";
+      var summary = "";
+      var point1  = "";
+      var point2  = "";
+      var hindi   = "";
+
+      // --- if-else logic to decide what to show ---
+
+      if (userType === "investor") {
+        // Content for Investors
+        title   = "📈 Investor Brief";
+        summary = "Markets showed strong momentum this week as RBI held interest rates steady. FII inflows surged in the IT and banking sectors. Experts suggest a cautious but optimistic outlook for Q2.";
+        point1  = "Sensex gained 1.2% this week; Nifty crossed 22,500 mark.";
+        point2  = "Gold prices dipped slightly — a possible entry point for long-term investors.";
+        hindi   = "🇮🇳 Hindi: Is hafte bazaar mein taezi dekhi gayi, aur RBI ne byaj dar nahi badhi — niveshkon ke liye achha sanket hai.";
+
+      } else if (userType === "student") {
+        // Content for Students
+        title   = "🎓 Student Explanation";
+        summary = "The Reserve Bank of India (RBI) decides the interest rates in our country. When rates stay the same, it means loans won't get costlier. This affects your education loans too!";
+        point1  = "Stock market going up means more jobs and business growth in India.";
+        point2  = "Understanding basic economics helps you make smarter financial decisions in life.";
+        hindi   = "🇮🇳 Hindi: RBI ne byaj dar ko same rakha — iska matlab hai ki ab loan lena thoda aasaan rahega. Yeh aapke education loan ke liye bhi acha hai!";
+
+      } else if (userType === "startup") {
+        // Content for Startup Founders
+        title   = "🚀 Startup Founder Update";
+        summary = "Funding activity in Indian startups picked up this week with multiple Seed and Series-A rounds closing. Fintech and EdTech remain top sectors. Investors are looking for strong unit economics.";
+        point1  = "3 Indian startups raised over ₹50 crore this week in the EdTech space.";
+        point2  = "Focus on profitability over growth — investors in 2025 prefer sustainable models.";
+        hindi   = "🇮🇳 Hindi: Is hafte kaafi startups ko funding mili. Agar aapka business model mazboot hai, toh abhi fundraising ka achha samay ho sakta hai!";
+      }
+
+      // --- Now put the content into the HTML ---
+
+      document.getElementById("news-title").innerText   = title;
+      document.getElementById("news-summary").innerText = summary;
+      document.getElementById("point-1").innerText      = point1;
+      document.getElementById("point-2").innerText      = point2;
+      document.getElementById("hindi-line").innerText   = hindi;
+
+      // Make the output box visible
+      outputBox.style.display = "block";
+
+    } // end of generateNews function
+  </script>
+
+</body>
+</html>
